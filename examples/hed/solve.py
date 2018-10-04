@@ -23,10 +23,10 @@ def interp_surgery(net, layers):
     for l in layers:
         m, k, h, w = net.params[l][0].data.shape
         if m != k:
-            print 'input + output channels need to be the same'
+            print('input + output channels need to be the same')
             raise
         if h != w:
-            print 'filters need to be square'
+            print('filters need to be square')
             raise
         filt = upsample_filt(h)
         net.params[l][0].data[range(m), range(k), :, :] = filt
@@ -37,8 +37,8 @@ def interp_surgery(net, layers):
 base_weights = '5stage-vgg.caffemodel'
 
 # init
-caffe.set_mode_gpu()
-caffe.set_device(0)
+#caffe.set_mode_gpu()
+#caffe.set_device(0)
 
 solver = caffe.SGDSolver('solver.prototxt')
 
