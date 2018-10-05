@@ -3,7 +3,9 @@ import numpy as np
 import sys
 caffe_root = '../../' 
 sys.path.insert(0, caffe_root + 'python')
+print('0')
 import caffe
+print('1')
 
 # make a bilinear interpolation kernel
 # credit @longjon
@@ -40,16 +42,20 @@ base_weights = '5stage-vgg.caffemodel'
 #caffe.set_mode_gpu()
 #caffe.set_device(0)
 
+print('1')
 solver = caffe.SGDSolver('solver.prototxt')
 
+print('1')
 # do net surgery to set the deconvolution weights for bilinear interpolation
 interp_layers = [k for k in solver.net.params.keys() if 'up' in k]
 interp_surgery(solver.net, interp_layers)
 
+print('1')
 # copy base weights for fine-tuning
 #solver.restore('dsn-full-res-3-scales_iter_29000.solverstate')
 solver.net.copy_from(base_weights)
 
+print('1')
 # solve straight through -- a better approach is to define a solving loop to
 # 1. take SGD steps
 # 2. score the model by the test net `solver.test_nets[0]`
