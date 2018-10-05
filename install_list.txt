@@ -1,26 +1,80 @@
- 1708  wget https://github.com/google/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.gz
- 1709  cd protobuf-2.5.0/
- 1710  wget https://raw.githubusercontent.com/google/protobuf/master/src/google/protobuf/stubs/atomicops_internals_generic_gcc.h -P src/google/protobuf/stubs/ 
- 1712  ./configure
- 1713  make
- 1715  make check
- 1717  make install
- 1718  sudo make install
- 1719  export LD_LIBRARY_PATH=/usr/local/lib
- 1720  protoc --version
+## PROTOBUF ##
 
- 1730  sudo apt-get install --no-install-recommends libboost-all-dev
+wget https://github.com/google/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.gz
+cd protobuf-2.5.0/
+wget https://raw.githubusercontent.com/google/protobuf/master/src/google/protobuf/stubs/atomicops_internals_generic_gcc.h -P src/google/protobuf/stubs/ 
+./configure
+make
+make check
+make install
+sudo make install
+export LD_LIBRARY_PATH=/usr/local/lib
+protoc --version
 
- 1733  sudo apt-get install libgflags-dev
 
- 1739  sudo apt install libgoogle-glog-dev
+## APT-GET ##
 
- 1745  sudo apt-get install libhdf5-serial-dev libhdf5-dev
+sudo apt-get install --no-install-recommends libboost-all-dev
+sudo apt-get install libgflags-dev
+sudo apt-get install libgoogle-glog-dev
+sudo apt-get install libhdf5-serial-dev libhdf5-dev
+sudo apt-get install libopenblas-dev
+sudo apt-get install python-opencv
+sudo apt-get install libopencv-dev
+sudo apt-get install libleveldb-dev
+sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+sudo apt-get install libsnappy-dev libatlas-base-dev
 
- 1753  sudo apt-get install libopenblas-dev
+sudo ln -sf libhdf5_serial.so libhdf5.so
+sudo ln -sf libhdf5_serial_hl.so libhdf5_hl.so
 
- 1758  sudo apt-get install python-opencv
+sudo apt-get install libtiff-tools
+sudo apt-get install cmake
 
- 1762  sudo apt-get install libopencv-dev
- 1768  history 200
+
+## LIBTIFF4 ##
+
+wget http://old-releases.ubuntu.com/ubuntu/pool/universe/t/tiff3/libtiff4_3.9.7-2ubuntu1_amd64.deb
+sudo dpkg -i libtiff4_3.9.7-2ubuntu1_amd64.deb
+
+## OPENCV + LIBTIFF4 ## 
+
+wget https://github.com/opencv/opencv/archive/3.4.2.zip
+unzip 3.4.2.zip
+rm 3.4.2.zip
+mv opencv-3.4.2 OpenCV
+cd OpenCV
+mkdir build
+cd build
+
+cmake \
+-DWITH_QT=ON \
+-DWITH_OPENGL=ON \
+-DFORCE_VTK=ON \
+-DWITH_TBB=ON \
+-DWITH_GDAL=ON \
+-DWITH_XINE=ON \
+-DBUILD_EXAMPLES=ON \
+-DENABLE_PRECOMPILED_HEADERS=OFF \
+-DBUILD_TIFF=ON \
+-DWITH_1394=OFF \
+-DENABLE_AVX=ON \
+-DENABLE_SSE=ON \
+-DENABLE_SSE2=ON \
+-DENABLE_SSE3=ON \
+-DENABLE_SSE41=ON \
+-DENABLE_SSE42=ON \
+-DENABLE_SSSE3=ON \
+-DWITH_CUBLAS=OFF \
+-DWITH_CUDA=OFF \
+-DWITH_CUFFT=OFF \
+-DWITH_FFMPEG=ON \
+-DWITH_TBB=ON \
+-DWITH_OPENMP=ON \
+-DWITH_IPP=ON \
+../
+
+make -j4
+sudo make install
+sudo ldconfig
 
