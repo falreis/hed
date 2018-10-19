@@ -13,7 +13,7 @@ protoc --version
 ## APT-GET ##
 
 sudo apt-get install --no-install-recommends libboost-all-dev
-sudo apt-get install libgflags-dev libgoogle-glog-dev libhdf5-serial-dev libhdf5-dev libopenblas-dev python-opencv libopencv-dev libleveldb-dev libgflags-dev libgoogle-glog-dev liblmdb-dev libsnappy-dev libatlas-base-dev cmake libpng-dev libopenexr-dev libjasper-dev
+sudo apt-get install libgflags-dev libgoogle-glog-dev libhdf5-serial-dev libhdf5-dev libopenblas-dev python-opencv libopencv-dev libleveldb-dev libgflags-dev libgoogle-glog-dev liblmdb-dev libsnappy-dev libatlas-base-dev cmake libpng-dev libopenexr-dev libjasper-dev l libprotobuf-dev protobuf-compiler python-protobuf
 
 sudo ln -sf libhdf5_serial.so libhdf5.so
 sudo ln -sf libhdf5_serial_hl.so libhdf5_hl.so
@@ -65,6 +65,7 @@ cmake \
 
 make -j4
 sudo make install
+sudo ldconfig -v
 locate libopencv_core.so.3.4
 #cd locate
 sudo ldconfig -v
@@ -72,6 +73,7 @@ sudo ldconfig -v
 sudo cp /usr/lib/x86_64-linux-gnu/libICE.so.6 /usr/lib/x86_64-linux-gnu/libICE.so
 sudo cp /usr/lib/x86_64-linux-gnu/libSM.so.6 /usr/lib/x86_64-linux-gnu/libSM.so
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu
+#adicionar ao ~/.bashrc
 
 
 ## CAFFE ## 
