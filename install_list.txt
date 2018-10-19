@@ -6,30 +6,21 @@ wget https://raw.githubusercontent.com/google/protobuf/master/src/google/protobu
 ./configure
 make
 make check
-make install
 sudo make install
 export LD_LIBRARY_PATH=/usr/local/lib
 protoc --version
 
-
 ## APT-GET ##
 
 sudo apt-get install --no-install-recommends libboost-all-dev
-sudo apt-get install libgflags-dev
-sudo apt-get install libgoogle-glog-dev
-sudo apt-get install libhdf5-serial-dev libhdf5-dev
-sudo apt-get install libopenblas-dev
-sudo apt-get install python-opencv
-sudo apt-get install libopencv-dev
-sudo apt-get install libleveldb-dev
-sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
-sudo apt-get install libsnappy-dev libatlas-base-dev
+sudo apt-get install libgflags-dev libgoogle-glog-dev libhdf5-serial-dev libhdf5-dev libopenblas-dev python-opencv libopencv-dev libleveldb-dev libgflags-dev libgoogle-glog-dev liblmdb-dev libsnappy-dev libatlas-base-dev cmake libpng-dev libopenexr-dev libjasper-dev
 
 sudo ln -sf libhdf5_serial.so libhdf5.so
 sudo ln -sf libhdf5_serial_hl.so libhdf5_hl.so
 
-sudo apt-get install libtiff-tools
-sudo apt-get install cmake
+#sudo apt-get install libtiff-tools
+
+sudo apt-get install python-dev python-pip
 
 
 ## LIBTIFF4 ##
@@ -37,7 +28,10 @@ sudo apt-get install cmake
 wget http://old-releases.ubuntu.com/ubuntu/pool/universe/t/tiff3/libtiff4_3.9.7-2ubuntu1_amd64.deb
 sudo dpkg -i libtiff4_3.9.7-2ubuntu1_amd64.deb
 
+
 ## OPENCV + LIBTIFF4 ## 
+
+sudo apt-get install libgles2-mesa-dev qtbase5-dev
 
 wget https://github.com/opencv/opencv/archive/3.4.2.zip
 unzip 3.4.2.zip
@@ -58,13 +52,8 @@ cmake \
 -DENABLE_PRECOMPILED_HEADERS=OFF \
 -DBUILD_TIFF=ON \
 -DWITH_1394=OFF \
--DENABLE_AVX=ON \
--DENABLE_SSE=ON \
--DENABLE_SSE2=ON \
--DENABLE_SSE3=ON \
--DENABLE_SSE41=ON \
--DENABLE_SSE42=ON \
 -DENABLE_SSSE3=ON \
+-DENABLE_AVX=ON \
 -DWITH_CUBLAS=OFF \
 -DWITH_CUDA=OFF \
 -DWITH_CUFFT=OFF \
@@ -76,5 +65,22 @@ cmake \
 
 make -j4
 sudo make install
-sudo ldconfig
+locate libopencv_core.so.3.4
+#cd locate
+sudo ldconfig -v
+
+sudo cp /usr/lib/x86_64-linux-gnu/libICE.so.6 /usr/lib/x86_64-linux-gnu/libICE.so
+sudo cp /usr/lib/x86_64-linux-gnu/libSM.so.6 /usr/lib/x86_64-linux-gnu/libSM.so
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu
+
+
+## CAFFE ## 
+mkdir build
+cd build
+cmake ..
+make all
+make pycaffe
+make test
+make runtest
+
 
