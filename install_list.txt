@@ -84,20 +84,7 @@ sudo cp /usr/lib/x86_64-linux-gnu/libICE.so.6 /usr/lib/x86_64-linux-gnu/libICE.s
 sudo cp /usr/lib/x86_64-linux-gnu/libSM.so.6 /usr/lib/x86_64-linux-gnu/libSM.so
 
 
-## CAFFE ## 
-
-mkdir build
-cd build
-cmake ..
-cd ..
-make all
-make pycaffe
-make test
-make runtest
-
-
 ## ~/.BASHRC ##
-
 #adicionar ao ~/.bashrc
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:usr/local/lib:~/anaconda2/lib:/home/falreis/Me/hed/python/caffe/
 export C_INCLUDE_PATH=/usr/include/python2.7
@@ -105,5 +92,19 @@ export C_INCLUDE_PATH=/usr/include/python2.7
 
 ## CONDA ##
 
+#passo opcional. se der erro na instalação do caffe (tentar make clean antes)
 conda install -c defaults protobuf libprotobuf
+#protobuf libprotobuf 2.6
 
+## CAFFE ## 
+
+#cd hed
+mkdir build
+cd build
+cmake ..
+cd ..
+make clean
+make all
+make pycaffe
+make test
+make runtest
