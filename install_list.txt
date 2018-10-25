@@ -119,3 +119,8 @@ make all
 make pycaffe
 make test
 make runtest
+
+
+## EXECUÇÃO DO HED ##
+#fazer somente atós a instalação do caffe
+conda install -c defaults protobuf libprotobuf
