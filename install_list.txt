@@ -92,13 +92,24 @@ export C_INCLUDE_PATH=/usr/include/python2.7
 
 ## CONDA ##
 
-#passo opcional. se der erro na instalação do caffe (tentar make clean antes)
+#cd hed
+
+#passo opcional. SOMENTE se der erro na instalação do caffe (tentar make clean antes)
 conda install -c defaults protobuf libprotobuf
 #protobuf libprotobuf 2.6
+#conda install -c minrk libprotobuf
+#conda install -c stuwilkins protobuf#
+
 
 ## CAFFE ## 
 
 #cd hed
+#conferir se o path no anaconda está correto com o diretório da máquina local
+#ANACONDA_HOME := /usr/local/bin/anaconda3
+##ANACONDA_HOME := ~/anaconda3
+#adicionar o comando 'LINKFLAGS := -Wl,-rpath,$(ANACONDA_HOME)/lib', se não houver no Makefile.config
+
+#compilar código
 mkdir build
 cd build
 cmake ..
